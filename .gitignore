@@ -1,0 +1,37 @@
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Temporary / Scratch
+scratch/
+*.log
+
+# Frontend dependencies and build output
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/build/
+frontend/.env*
+!frontend/.env.example
+
+# Backend dependencies and environment
+backend/vendor/
+backend/node_modules/
+backend/.env
+backend/.env.backup
+backend/.env.production
+!backend/.env.example
+!backend/.env.production.example
+backend/storage/framework/cache/data/*
+backend/storage/framework/sessions/*
+backend/storage/framework/views/*
+backend/storage/logs/*
+backend/storage/*.key
+backend/public/hot
+backend/public/storage
+backend/bootstrap/cache/*
+!backend/bootstrap/cache/.gitignore
