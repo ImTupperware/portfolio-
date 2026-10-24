@@ -6,10 +6,10 @@ export function Footer() {
     <footer className="mt-10 border-t border-white/[0.08] bg-slate-950/80 backdrop-blur-xl py-12 text-slate-400 text-xs">
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-5 px-6 md:flex-row">
         <div className="flex items-center gap-2.5">
-          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-tr from-sky-500 to-indigo-600 text-white shadow-sm">
+          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-tr from-sky-500 to-indigo-600 text-white shadow-sm shrink-0">
             <Layers className="h-3.5 w-3.5" />
           </div>
-          <div>
+          <div className="text-left">
             <span className="font-bold text-slate-200 block text-sm">
               Ahmad Nurjuwaidi
             </span>

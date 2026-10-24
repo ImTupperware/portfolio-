@@ -10,7 +10,7 @@ interface HeroPortraitProps {
 
 export function HeroPortrait({ name = "Ahmad Nurjuwaidi" }: HeroPortraitProps) {
   return (
-    <div className="relative flex items-center justify-center select-none w-full max-w-[340px] sm:max-w-[380px] lg:max-w-[420px]">
+    <div className="relative flex items-center justify-center select-none w-full max-w-[270px] sm:max-w-[360px] lg:max-w-[420px]">
       {/* Dynamic Multi-layered Ambient Aurora Glow */}
       <div
         aria-hidden="true"

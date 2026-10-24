@@ -19,37 +19,39 @@ export function ResumeHeader() {
   const waDigits = profile?.whatsapp ? profile.whatsapp.replace(/[^0-9]/g, "") : null;
 
   return (
-    <section id="about" className="pt-8 sm:pt-14 pb-16 border-b border-white/[0.08]">
-      <div className="flex flex-col-reverse lg:flex-row lg:items-center lg:justify-between gap-10 lg:gap-14">
+    <section id="about" className="pt-6 sm:pt-14 pb-12 sm:pb-16 border-b border-white/[0.08]">
+      <div className="flex flex-col-reverse lg:flex-row lg:items-center lg:justify-between gap-8 lg:gap-14">
         <div className="flex-1 max-w-2xl">
           {/* Status Capsule */}
-          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-950/50 px-3.5 py-1 text-xs font-medium text-emerald-300 mb-5 shadow-sm shadow-emerald-950/40">
-            <span className="relative flex h-2 w-2">
+          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-950/50 px-3 py-1 text-[11px] sm:text-xs font-medium text-emerald-300 mb-4 sm:mb-5 shadow-sm shadow-emerald-950/40">
+            <span className="relative flex h-2 w-2 shrink-0">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
             </span>
-            <span>{profile?.availability || "Open to Full-Time & Freelance Roles • Klang Valley & Remote • Available Immediately"}</span>
+            <span className="leading-tight">
+              {profile?.availability || "Open to Full-Time & Freelance Roles • Klang Valley & Remote • Available Immediately"}
+            </span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.1]">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight sm:leading-[1.1]">
             {profile?.name || "AHMAD NURJUWAIDI"}
           </h1>
 
-          <p className="mt-3 text-xl sm:text-2xl font-bold bg-gradient-to-r from-sky-400 via-teal-300 to-indigo-400 bg-clip-text text-transparent">
+          <p className="mt-2.5 sm:mt-3 text-lg sm:text-2xl font-bold bg-gradient-to-r from-sky-400 via-teal-300 to-indigo-400 bg-clip-text text-transparent">
             {profile?.title || "Software Engineering Fresh Graduate • Full-Stack Developer"}
           </p>
 
-          <p className="mt-4 text-base sm:text-lg leading-relaxed text-slate-300 font-normal">
+          <p className="mt-3.5 sm:mt-4 text-sm sm:text-lg leading-relaxed text-slate-300 font-normal">
             {profile?.summary ||
               "Computer Science (Software Engineering) fresh graduate from Universiti Malaysia Pahang Al-Sultan Abdullah (UMPSA, 2025) and Freelance Full-Stack Developer. Completed a 6-month university Industrial Training at Stealthx Performance Sdn. Bhd., and actively helps manage my mother's business while engineering production systems—notably Cikda Biz, an offline-first POS PWA with thermal receipt printing designed for real-world retail workflows."}
           </p>
 
           {/* Quick Tech Highlights Pills */}
-          <div className="mt-5 flex flex-wrap items-center gap-1.5 text-[11px] font-semibold text-slate-300">
+          <div className="mt-4 sm:mt-5 flex flex-wrap items-center gap-1.5 text-[10px] sm:text-[11px] font-semibold text-slate-300">
             {["Next.js 15", "React 19", "TypeScript", "Laravel 12", "PostgreSQL", "MySQL / TiDB", "Capacitor PWA", "Docker"].map((tech) => (
               <span
                 key={tech}
-                className="rounded-lg border border-white/10 bg-slate-900/60 px-2.5 py-1 text-slate-300 backdrop-blur-sm"
+                className="rounded-lg border border-white/10 bg-slate-900/60 px-2 py-0.5 sm:px-2.5 sm:py-1 text-slate-300 backdrop-blur-sm"
               >
                 {tech}
               </span>
@@ -57,19 +59,19 @@ export function ResumeHeader() {
           </div>
 
           {/* Social and Contact Links Pills */}
-          <div className="mt-6 flex flex-wrap items-center gap-2.5 text-xs font-medium text-slate-400">
+          <div className="mt-5 sm:mt-6 flex flex-wrap items-center gap-2 sm:gap-2.5 text-[11px] sm:text-xs font-medium text-slate-400">
             {profile?.location && (
-              <span className="flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-slate-900/50 px-3 py-1 text-slate-300">
-                <MapPin className="h-3.5 w-3.5 text-sky-400" />
+              <span className="flex items-center gap-1 rounded-full border border-white/[0.08] bg-slate-900/50 px-2.5 sm:px-3 py-1 text-slate-300">
+                <MapPin className="h-3 w-3 text-sky-400" />
                 {profile.location}
               </span>
             )}
             {profile?.email && (
               <a
                 href={`mailto:${profile.email}`}
-                className="flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-slate-900/50 px-3 py-1 text-slate-300 hover:text-white hover:border-sky-500/40 transition"
+                className="flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-slate-900/50 px-2.5 sm:px-3 py-1 text-slate-300 hover:text-white hover:border-sky-500/40 transition"
               >
-                <Mail className="h-3.5 w-3.5 text-sky-400" />
+                <Mail className="h-3 w-3 text-sky-400" />
                 {profile.email}
               </a>
             )}
@@ -78,7 +80,7 @@ export function ResumeHeader() {
                 href={`https://wa.me/${waDigits}`}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-950/40 px-3 py-1 text-emerald-400 hover:bg-emerald-900/60 hover:text-emerald-300 transition font-semibold"
+                className="flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-950/40 px-2.5 sm:px-3 py-1 text-emerald-400 hover:bg-emerald-900/60 hover:text-emerald-300 transition font-semibold"
               >
                 <WhatsAppIcon className="h-3.5 w-3.5 text-emerald-400" />
                 WhatsApp
@@ -89,7 +91,7 @@ export function ResumeHeader() {
                 href={profile.github_url}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-slate-900/50 px-3 py-1 text-slate-300 hover:text-white hover:border-slate-600 transition"
+                className="flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-slate-900/50 px-2.5 sm:px-3 py-1 text-slate-300 hover:text-white hover:border-slate-600 transition"
               >
                 <GitHubIcon className="h-3.5 w-3.5" />
                 GitHub
@@ -100,7 +102,7 @@ export function ResumeHeader() {
                 href={profile.linkedin_url}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-slate-900/50 px-3 py-1 text-slate-300 hover:text-white hover:border-sky-500/40 transition"
+                className="flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-slate-900/50 px-2.5 sm:px-3 py-1 text-slate-300 hover:text-white hover:border-sky-500/40 transition"
               >
                 <LinkedInIcon className="h-3.5 w-3.5 text-sky-400" />
                 LinkedIn
@@ -111,9 +113,9 @@ export function ResumeHeader() {
                 href={profile.website_url}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-slate-900/50 px-3 py-1 text-slate-300 hover:text-white hover:border-sky-500/40 transition"
+                className="flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-slate-900/50 px-2.5 sm:px-3 py-1 text-slate-300 hover:text-white hover:border-sky-500/40 transition"
               >
-                <Globe className="h-3.5 w-3.5 text-sky-400" />
+                <Globe className="h-3 w-3 text-sky-400" />
                 Website
               </a>
             )}
@@ -124,13 +126,13 @@ export function ResumeHeader() {
         </div>
 
         {/* Right Column: Floating Dock & Silhouette Portrait */}
-        <div className="flex flex-col items-center lg:items-end gap-6 shrink-0">
+        <div className="flex flex-col-reverse lg:flex-col items-center lg:items-end gap-4 sm:gap-6 shrink-0">
+          <HeroPortrait name={profile?.name} />
           <ResumeHeaderDock
             isEditMode={isEditMode}
             whatsapp={profile?.whatsapp}
             onOpenEditProfile={() => setIsEditProfileOpen(true)}
           />
-          <HeroPortrait name={profile?.name} />
         </div>
       </div>
 

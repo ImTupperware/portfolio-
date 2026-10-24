@@ -15,17 +15,17 @@ export function CertificationsGrid() {
 
   return (
     <ErrorBoundary fallbackTitle="Unable to load certifications" onReset={() => refetch()}>
-      <section id="certifications" className="py-16 border-t border-white/[0.08]">
-        <div className="mb-10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
+      <section id="certifications" className="py-12 sm:py-16 border-t border-white/[0.08]">
+        <div className="mb-8 sm:mb-10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-5 sm:gap-6">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-sky-500/30 bg-sky-950/50 px-3.5 py-1 text-xs font-semibold text-sky-300 mb-3 shadow-sm shadow-sky-950/40">
+            <div className="inline-flex items-center gap-2 rounded-full border border-sky-500/30 bg-sky-950/50 px-3 py-1 text-[11px] sm:text-xs font-semibold text-sky-300 mb-2.5 sm:mb-3 shadow-sm shadow-sky-950/40">
               <Award className="h-3.5 w-3.5 text-sky-400" />
               <span>Leadership &amp; Attributes</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white">
               Involvement &amp; Key Attributes
             </h2>
-            <p className="mt-2 text-base text-slate-400 max-w-2xl font-normal">
+            <p className="mt-1.5 sm:mt-2 text-sm sm:text-base text-slate-400 max-w-2xl font-normal">
               University leadership roles, multilingual fluency (English &amp; Malay), agility, and readiness for remote and on-site engineering roles.
             </p>
           </div>

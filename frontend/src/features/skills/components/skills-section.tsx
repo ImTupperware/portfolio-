@@ -18,17 +18,17 @@ export function SkillsSection() {
 
   return (
     <ErrorBoundary fallbackTitle="Unable to load skills matrix" onReset={() => refetch()}>
-      <section id="skills" className="py-16 border-t border-white/[0.08]">
-        <div className="mb-10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
+      <section id="skills" className="py-12 sm:py-16 border-t border-white/[0.08]">
+        <div className="mb-8 sm:mb-10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-5 sm:gap-6">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-sky-500/30 bg-sky-950/50 px-3.5 py-1 text-xs font-semibold text-sky-300 mb-3 shadow-sm shadow-sky-950/40">
+            <div className="inline-flex items-center gap-2 rounded-full border border-sky-500/30 bg-sky-950/50 px-3 py-1 text-[11px] sm:text-xs font-semibold text-sky-300 mb-2.5 sm:mb-3 shadow-sm shadow-sky-950/40">
               <Cpu className="h-3.5 w-3.5 text-sky-400" />
               <span>Core Stack &amp; Capabilities</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white">
               Technical Skills Matrix
             </h2>
-            <p className="mt-2 text-base text-slate-400 max-w-2xl font-normal">
+            <p className="mt-1.5 sm:mt-2 text-sm sm:text-base text-slate-400 max-w-2xl font-normal">
               Validated expertise across modern frontend ecosystems, robust backend services, scalable relational databases, and offline hardware architectures.
             </p>
           </div>
@@ -45,8 +45,8 @@ export function SkillsSection() {
           )}
         </div>
 
-        {/* Filter Pills */}
-        <div className="mb-8 flex flex-wrap gap-2 text-xs">
+        {/* Swipeable Filter Pills on mobile */}
+        <div className="mb-6 sm:mb-8 flex overflow-x-auto no-scrollbar pb-1 sm:flex-wrap gap-2 text-xs -mx-4 px-4 sm:mx-0 sm:px-0">
           {categories.map((category) => {
             const active = category === "All" ? !activeCategory : activeCategory === category;
             return (
@@ -54,7 +54,7 @@ export function SkillsSection() {
                 key={category}
                 type="button"
                 onClick={() => setActiveCategory(category === "All" ? undefined : category)}
-                className={`rounded-full px-4 py-1.5 font-semibold transition-all duration-200 active:scale-95 ${
+                className={`shrink-0 sm:shrink rounded-full px-3.5 py-1.5 sm:px-4 sm:py-2 font-semibold transition-all duration-200 active:scale-95 ${
                   active
                     ? "bg-gradient-to-r from-sky-400 to-indigo-500 text-slate-950 font-bold shadow-lg shadow-sky-500/20"
                     : "border border-white/10 bg-slate-900/60 text-slate-300 hover:border-white/20 hover:bg-slate-800/80 hover:text-white"
