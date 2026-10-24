@@ -5,12 +5,11 @@ import Link from "next/link";
 import { useUIStore } from "@/stores/ui-store";
 import { AuthButton } from "@/features/auth/components/auth-button";
 import { LoginModal } from "@/features/auth/components/login-modal";
-import { Layers, Mail, Menu, X, Sparkles } from "lucide-react";
+import { Layers, Mail, Menu, X } from "lucide-react";
 
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const openContactModal = useUIStore((state) => state.openContactModal);
-  const openAiChat = useUIStore((state) => state.openAiChat);
 
   const navLinks = [
     { href: "/#about", label: "About" },
@@ -65,16 +64,6 @@ export function Navbar() {
             <div className="flex items-center gap-2">
               <button
                 type="button"
-                onClick={openAiChat}
-                className="hidden sm:inline-flex items-center gap-1.5 rounded-full border border-indigo-500/40 bg-indigo-950/50 px-3 py-1.5 text-xs font-semibold text-indigo-300 transition hover:bg-indigo-900/60 hover:text-indigo-200 active:scale-95 shadow-sm"
-                title="Ask AI Assistant"
-              >
-                <Sparkles className="h-3.5 w-3.5 text-indigo-400 animate-pulse" />
-                <span className="hidden md:inline">AI Agent</span>
-              </button>
-
-              <button
-                type="button"
                 onClick={openContactModal}
                 className="inline-flex items-center gap-1.5 rounded-full border border-sky-500/40 bg-sky-950/60 px-3.5 py-1.5 text-xs font-semibold text-sky-300 transition hover:bg-sky-900/80 hover:text-sky-200 active:scale-95 shadow-sm shadow-sky-950/40"
               >
@@ -114,16 +103,6 @@ export function Navbar() {
                   <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
                   Available Immediately (KL/Selangor/Remote)
                 </span>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    openAiChat();
-                  }}
-                  className="inline-flex items-center gap-1 text-xs text-indigo-400 font-semibold"
-                >
-                  <Sparkles className="h-3 w-3" /> Chat AI
-                </button>
               </div>
             </div>
           )}

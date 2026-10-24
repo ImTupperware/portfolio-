@@ -4,7 +4,7 @@ import React from "react";
 import { useUIStore } from "@/stores/ui-store";
 import { ContactTrigger } from "@/features/inquiries/components/contact-trigger";
 import { WhatsAppIcon } from "@/components/brand-icons";
-import { Printer, UserCheck, Sparkles, FileUp } from "lucide-react";
+import { Printer, UserCheck, FileUp } from "lucide-react";
 
 interface Props {
   isEditMode: boolean;
@@ -13,7 +13,6 @@ interface Props {
 }
 
 export function ResumeHeaderDock({ isEditMode, whatsapp, onOpenEditProfile }: Props) {
-  const openAiChat = useUIStore((state) => state.openAiChat);
   const openResumeUpload = useUIStore((state) => state.openResumeUpload);
 
   const waDigits = whatsapp ? whatsapp.replace(/[^0-9]/g, "") : null;
@@ -45,16 +44,6 @@ export function ResumeHeaderDock({ isEditMode, whatsapp, onOpenEditProfile }: Pr
           </button>
         </>
       )}
-
-      <button
-        type="button"
-        onClick={openAiChat}
-        title="Ask AI Assistant about Ahmad"
-        aria-label="Ask AI Assistant about Ahmad"
-        className="flex h-11 w-11 items-center justify-center rounded-xl border border-indigo-500/50 bg-indigo-950/70 text-indigo-300 transition hover:bg-indigo-900/80 hover:scale-105 active:scale-95 shadow-md shadow-indigo-950/30"
-      >
-        <Sparkles className="h-5 w-5 text-indigo-400 animate-pulse" />
-      </button>
 
       {waDigits && (
         <a

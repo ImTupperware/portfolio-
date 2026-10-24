@@ -16,35 +16,37 @@ export function AuthButton() {
       <button
         type="button"
         onClick={openLoginModal}
-        className="inline-flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-900/80 px-3 py-1.5 text-xs font-semibold text-slate-300 transition hover:bg-slate-800 hover:text-white active:scale-95"
+        title="Owner Login"
+        aria-label="Owner Login"
+        className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-slate-900/80 text-slate-400 hover:text-white hover:border-white/20 hover:bg-slate-800 transition active:scale-95 shadow-sm"
       >
-        <Lock className="h-3 w-3 text-slate-400" />
-        <span>Owner Login</span>
+        <Lock className="h-3.5 w-3.5" />
       </button>
     );
   }
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-1.5">
       <button
         type="button"
         onClick={toggleEditMode}
-        className={`inline-flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-semibold transition ${
+        className={`inline-flex h-8 w-8 items-center justify-center rounded-full border transition active:scale-95 ${
           isEditMode
             ? "border-amber-500/50 bg-amber-950/70 text-amber-300 shadow-sm shadow-amber-500/20"
-            : "border-slate-700 bg-slate-800/80 text-slate-300 hover:text-white hover:bg-slate-700"
+            : "border-white/10 bg-slate-900/80 text-slate-400 hover:text-white hover:bg-slate-800"
         }`}
-        title="Toggle in-place content editor mode"
+        title={isEditMode ? "Edit Mode Active (Click to disable)" : "Enable Edit Mode"}
+        aria-label="Toggle in-place content editor mode"
       >
-        <Edit3 className="h-3 w-3" />
-        <span>{isEditMode ? "Edit Mode: Active" : "Enable Edit Mode"}</span>
+        <Edit3 className="h-3.5 w-3.5" />
       </button>
 
       <button
         type="button"
         onClick={logout}
-        className="inline-flex items-center gap-1 rounded-lg border border-slate-800 bg-slate-900/80 p-1.5 text-slate-400 transition hover:bg-red-950/40 hover:border-red-500/30 hover:text-red-400"
+        className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-slate-900/80 text-slate-400 transition hover:bg-red-950/40 hover:border-red-500/30 hover:text-red-400 active:scale-95"
         title="Log out"
+        aria-label="Log out"
       >
         <LogOut className="h-3.5 w-3.5" />
       </button>

@@ -7,7 +7,6 @@ import { WhatsAppIcon } from "@/components/brand-icons";
 
 export function CtaSection() {
   const openContactModal = useUIStore((state) => state.openContactModal);
-  const openAiChat = useUIStore((state) => state.openAiChat);
   const [copied, setCopied] = useState(false);
 
   const email = "ahmadnurjuwaidi@gmail.com";

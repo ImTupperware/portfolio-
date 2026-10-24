@@ -4,8 +4,6 @@ import "./globals.css";
 import { QueryProvider } from "@/components/providers/query-provider";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
-import { AiChatFloatingButton } from "@/features/ai-chat/components/ai-chat-floating-button";
-import { AiChatModal } from "@/features/ai-chat/components/ai-chat-modal";
 import { ResumeUploadAiModal } from "@/features/resume/components/resume-upload-ai-modal";
 
 const geistSans = Geist({
@@ -48,8 +46,6 @@ export default function RootLayout({
             <div className="flex-1">{children}</div>
             <Footer />
           </div>
-          <AiChatFloatingButton />
-          <AiChatModal />
           <ResumeUploadAiModal />
         </QueryProvider>
       </body>
