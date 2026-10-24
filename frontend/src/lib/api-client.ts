@@ -30,7 +30,8 @@ export class RateLimitError extends ApiError {
   }
 }
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000/api/v1";
+const API_BASE_URL =
+  process.env.NEXT_PUBLIC_API_URL || "https://ahmad-portfolio-api-yl4h.onrender.com/api/v1";
 
 export async function apiClient<T>(
   endpoint: string,
