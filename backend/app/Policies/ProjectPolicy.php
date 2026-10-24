@@ -8,6 +8,17 @@ use App\Models\User;
 class ProjectPolicy
 {
     /**
+     * Admin bypass for all authorization policies.
+     */
+    public function before(User $user, string $ability): ?bool
+    {
+        if ($user->role === 'admin') {
+            return true;
+        }
+        return null;
+    }
+
+    /**
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool

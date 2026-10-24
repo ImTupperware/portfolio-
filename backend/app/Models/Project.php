@@ -56,4 +56,21 @@ class Project extends Model
     {
         return $query->where('featured', true);
     }
+
+    /**
+     * Resolve route binding by numeric ID or URL slug for resilience against database reseeds.
+     */
+    public function resolveRouteBinding($value, $field = null)
+    {
+        if (is_numeric($value)) {
+            $item = $this->where('id', $value)->first();
+            if ($item) {
+                return $item;
+            }
+        }
+
+        return $this->where('slug', $value)->first()
+            ?? abort(404, 'The requested resource was not found.');
+    }
 }
+

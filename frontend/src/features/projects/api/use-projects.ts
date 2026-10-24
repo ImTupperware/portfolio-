@@ -59,7 +59,7 @@ export function useProjectsQuery(params: {
       return PaginatedProjectsResponseSchema.parse(raw);
     },
     initialData,
-    initialDataUpdatedAt: () => Date.now(),
+    initialDataUpdatedAt: 0,
     staleTime: 5 * 60 * 1000,
   });
 }
@@ -77,7 +77,7 @@ export function useProjectDetailQuery(slug: string) {
       return ProjectSchema.parse(raw.data);
     },
     initialData: fallbackProject,
-    initialDataUpdatedAt: () => Date.now(),
+    initialDataUpdatedAt: 0,
     staleTime: 5 * 60 * 1000,
     enabled: Boolean(slug),
   });

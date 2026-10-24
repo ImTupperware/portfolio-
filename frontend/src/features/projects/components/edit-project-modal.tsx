@@ -44,7 +44,10 @@ export function EditProjectModal({ project, isOpen, onClose }: EditProjectModalP
       setError(parsed.error.issues[0]?.message || "Validation failure.");
       return;
     }
-    updateMutation.mutate({ id: project.id, data: parsed.data }, { onSuccess: () => onClose() });
+    updateMutation.mutate(
+      { id: project.id, slug: project.slug, data: parsed.data },
+      { onSuccess: () => onClose() }
+    );
   };
 
   const handleDelete = () => {
@@ -52,7 +55,10 @@ export function EditProjectModal({ project, isOpen, onClose }: EditProjectModalP
       setConfirmDelete(true);
       return;
     }
-    deleteMutation.mutate(project.id, { onSuccess: () => onClose() });
+    deleteMutation.mutate(
+      { id: project.id, slug: project.slug },
+      { onSuccess: () => onClose() }
+    );
   };
 
   const inputCls = "w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-white focus:border-sky-500 focus:outline-none";

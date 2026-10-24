@@ -16,7 +16,8 @@ class DeleteProjectAction
      */
     public function execute(User $user, Project $project): void
     {
-        if ((int)$user->id !== (int)$project->user_id) {
+        // Anti-IDOR ownership barrier (Admin allowed)
+        if ($user->role !== 'admin' && (int)$user->id !== (int)$project->user_id) {
             throw new AuthorizationException('Access denied: You do not own this project.');
         }
 

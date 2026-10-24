@@ -29,7 +29,7 @@ export function useSkillsQuery(category?: string) {
       return SkillsResponseSchema.parse(raw);
     },
     initialData,
-    initialDataUpdatedAt: () => Date.now(),
+    initialDataUpdatedAt: 0,
     staleTime: 5 * 60 * 1000,
   });
 }

@@ -7,8 +7,17 @@ export function useUpdateProjectMutation() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async ({ id, data }: { id: number; data: Partial<ProjectFormData> }) => {
-      const response = await apiClient<{ data: Project }>(`/projects/${id}`, {
+    mutationFn: async ({
+      id,
+      slug,
+      data,
+    }: {
+      id: number;
+      slug?: string;
+      data: Partial<ProjectFormData>;
+    }) => {
+      const identifier = slug || id;
+      const response = await apiClient<{ data: Project }>(`/projects/${identifier}`, {
         method: "PUT",
         body: JSON.stringify(data),
       });
@@ -26,8 +35,9 @@ export function useDeleteProjectMutation() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async (id: number) => {
-      return await apiClient<{ success: boolean; message: string }>(`/projects/${id}`, {
+    mutationFn: async ({ id, slug }: { id: number; slug?: string }) => {
+      const identifier = slug || id;
+      return await apiClient<{ success: boolean; message: string }>(`/projects/${identifier}`, {
         method: "DELETE",
       });
     },

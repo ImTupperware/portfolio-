@@ -17,7 +17,7 @@ export function useResumeQuery() {
       return ResumeBundleSchema.parse(raw);
     },
     initialData: INITIAL_RESUME,
-    initialDataUpdatedAt: () => Date.now(),
+    initialDataUpdatedAt: 0,
     staleTime: 5 * 60 * 1000,
   });
 }
