@@ -30,8 +30,17 @@ export class RateLimitError extends ApiError {
   }
 }
 
-const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL || "https://ahmad-portfolio-api-yl4h.onrender.com/api/v1";
+function getApiBaseUrl(): string {
+  if (typeof window !== "undefined") {
+    // If local development, use localhost
+    if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
+      return (process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000/api/v1").replace(/\/+$/, "");
+    }
+    // In production browser, use same-origin Next.js rewrite proxy to bypass CORS and ad-blockers
+    return "/api/proxy";
+  }
+  return (process.env.NEXT_PUBLIC_API_URL || "https://ahmad-portfolio-api-yl4h.onrender.com/api/v1").replace(/\/+$/, "");
+}
 
 export async function apiClient<T>(
   endpoint: string,
@@ -52,7 +61,11 @@ export async function apiClient<T>(
     headers.Authorization = `Bearer ${token}`;
   }
 
-  const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+  const base = getApiBaseUrl();
+  const cleanEndpoint = endpoint.startsWith("/") ? endpoint : `/${endpoint}`;
+  const targetUrl = `${base}${cleanEndpoint}`;
+
+  const response = await fetch(targetUrl, {
     ...options,
     headers,
   });

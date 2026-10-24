@@ -23,8 +23,9 @@ export function createQueryClient(): QueryClient {
               return false;
             }
           }
-          return failureCount < 2;
+          return failureCount < 4;
         },
+        retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 10000),
       },
       mutations: {
         retry: 0, // Mutations should never blindly retry to prevent duplicate side effects
