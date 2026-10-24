@@ -42,7 +42,7 @@ export function EducationSection() {
           )}
         </div>
 
-        {isLoading ? (
+        {isLoading && !data ? (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {Array.from({ length: 2 }).map((_, i) => (
               <div key={i} className="h-32 rounded-2xl bg-slate-900/50 p-6 animate-pulse border border-white/10" />

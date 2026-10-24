@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { apiClient } from "@/lib/api-client";
 import {
@@ -7,6 +8,7 @@ import {
   ProjectFormData,
   ProjectSchema,
 } from "../schemas/project.schema";
+import { INITIAL_PROJECTS } from "../data/initial-projects";
 
 export const projectKeys = {
   all: ["projects"] as const,
@@ -23,6 +25,23 @@ export function useProjectsQuery(params: {
   tag?: string;
   status?: string;
 } = {}) {
+  const initialData = useMemo(() => {
+    let filtered = INITIAL_PROJECTS.data;
+    if (params.tag && params.tag !== "All") {
+      filtered = filtered.filter((p) =>
+        p.tags.some((t) => t.toLowerCase().includes(params.tag!.toLowerCase()))
+      );
+    }
+    return {
+      ...INITIAL_PROJECTS,
+      data: filtered,
+      meta: {
+        ...INITIAL_PROJECTS.meta,
+        total: filtered.length,
+      },
+    };
+  }, [params.tag]);
+
   return useQuery({
     queryKey: projectKeys.list(params),
     queryFn: async () => {
@@ -39,16 +58,27 @@ export function useProjectsQuery(params: {
       // Strictly parse and sanitize incoming server response with Zod
       return PaginatedProjectsResponseSchema.parse(raw);
     },
+    initialData,
+    initialDataUpdatedAt: () => Date.now(),
+    staleTime: 5 * 60 * 1000,
   });
 }
 
 export function useProjectDetailQuery(slug: string) {
+  const fallbackProject = useMemo(
+    () => INITIAL_PROJECTS.data.find((p) => p.slug === slug),
+    [slug]
+  );
+
   return useQuery({
     queryKey: projectKeys.detail(slug),
     queryFn: async () => {
       const raw = await apiClient<{ data: Project }>(`/projects/${slug}`);
       return ProjectSchema.parse(raw.data);
     },
+    initialData: fallbackProject,
+    initialDataUpdatedAt: () => Date.now(),
+    staleTime: 5 * 60 * 1000,
     enabled: Boolean(slug),
   });
 }

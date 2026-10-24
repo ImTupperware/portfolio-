@@ -26,20 +26,20 @@ export function ExperienceTimeline() {
           </p>
         </div>
 
-        {isLoading && (
+        {isLoading && !data && (
           <div className="space-y-6">
             <ExperienceSkeleton />
             <ExperienceSkeleton />
           </div>
         )}
 
-        {isError && (
+        {isError && !data && (
           <div className="rounded-xl border border-red-500/20 bg-red-950/20 p-6 text-center text-sm text-red-400">
             Failed to fetch experience records: {error?.message || "Internal server error"}
           </div>
         )}
 
-        {!isLoading && !isError && data && (
+        {data && (
           <div className="mt-6 space-y-2">
             {data.experiences.map((exp) => (
               <ExperienceCard key={exp.id} experience={exp} />

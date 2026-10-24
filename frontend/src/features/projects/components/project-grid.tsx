@@ -59,7 +59,7 @@ export function ProjectGrid() {
           </div>
         </div>
 
-        {isLoading && (
+        {isLoading && !data && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {Array.from({ length: 4 }).map((_, i) => (
               <ProjectCardSkeleton key={i} />
@@ -67,13 +67,13 @@ export function ProjectGrid() {
           </div>
         )}
 
-        {isError && (
+        {isError && !data && (
           <div className="rounded-xl border border-red-500/20 bg-red-950/20 p-6 text-center text-sm text-red-400">
             Failed to fetch projects: {error?.message || "Internal server error"}
           </div>
         )}
 
-        {!isLoading && !isError && data && (
+        {data && (
           <>
             {data.data.length === 0 ? (
               <div className="rounded-2xl border border-white/10 bg-slate-900/40 p-12 text-center text-slate-400 backdrop-blur-md">

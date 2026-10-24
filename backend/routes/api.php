@@ -15,6 +15,7 @@ Route::prefix('v1')->group(function () {
 
     // Public Read Endpoints (Throttled via general API rate limiter)
     Route::middleware(['throttle:api'])->group(function () {
+        Route::get('/health', fn () => response()->json(['status' => 'ok', 'timestamp' => now()->toIso8601String()]));
         Route::get('/resume', [ResumeController::class, 'bundle']);
         Route::get('/experiences', [ResumeController::class, 'experiences']);
         Route::get('/projects', [ProjectController::class, 'index']);

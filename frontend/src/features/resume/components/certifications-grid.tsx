@@ -42,7 +42,7 @@ export function CertificationsGrid() {
           )}
         </div>
 
-        {isLoading ? (
+        {isLoading && !data ? (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {Array.from({ length: 3 }).map((_, i) => (
               <div key={i} className="h-36 rounded-2xl bg-slate-900/50 p-6 animate-pulse border border-white/10" />
