@@ -22,18 +22,18 @@ export function ProjectGrid() {
 
   return (
     <ErrorBoundary fallbackTitle="Unable to load projects" onReset={() => refetch()}>
-      <section id="projects" className="py-14 border-t border-slate-800/80">
-        <div className="mb-10 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+      <section id="projects" className="py-16 border-t border-white/[0.08]">
+        <div className="mb-10 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-sky-500/30 bg-sky-950/40 px-3 py-1 text-xs font-medium text-sky-300 mb-3">
+            <div className="inline-flex items-center gap-2 rounded-full border border-sky-500/30 bg-sky-950/50 px-3.5 py-1 text-xs font-semibold text-sky-300 mb-3 shadow-sm shadow-sky-950/40">
               <FolderGit2 className="h-3.5 w-3.5 text-sky-400" />
-              <span>Featured Work</span>
+              <span>Flagship Systems &amp; Software</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white">
               Featured Projects
             </h2>
-            <p className="mt-2 text-base text-slate-400 max-w-2xl">
-              Full-stack web applications, offline-first PWAs, and multi-tenant SaaS systems built with Next.js 15, React 19, Laravel 12, and Supabase.
+            <p className="mt-2 text-base text-slate-400 max-w-2xl font-normal">
+              Production systems, offline-first retail PWAs with hardware thermal printing, and multi-tenant SaaS architectures built with Next.js 15, React 19, and Laravel 12.
             </p>
           </div>
 
@@ -45,10 +45,10 @@ export function ProjectGrid() {
                   key={cat}
                   type="button"
                   onClick={() => setUrlParams({ tag: cat === "All" ? undefined : cat, page: 1 })}
-                  className={`rounded-lg px-3.5 py-1.5 font-medium transition ${
+                  className={`rounded-full px-4 py-2 font-semibold transition-all duration-200 active:scale-95 ${
                     active
-                      ? "bg-sky-500 text-slate-950 font-bold shadow-md shadow-sky-500/20"
-                      : "bg-slate-800/80 text-slate-300 hover:bg-slate-700 hover:text-white"
+                      ? "bg-gradient-to-r from-sky-400 to-indigo-500 text-slate-950 font-bold shadow-lg shadow-sky-500/20"
+                      : "border border-white/10 bg-slate-900/60 text-slate-300 hover:border-white/20 hover:bg-slate-800/80 hover:text-white"
                   }`}
                 >
                   {cat}
@@ -75,13 +75,21 @@ export function ProjectGrid() {
         {!isLoading && !isError && data && (
           <>
             {data.data.length === 0 ? (
-              <div className="rounded-xl border border-slate-800 bg-slate-900/30 p-12 text-center text-slate-400">
-                No projects found matching filter &quot;{urlState.tag}&quot;.
+              <div className="rounded-2xl border border-white/10 bg-slate-900/40 p-12 text-center text-slate-400 backdrop-blur-md">
+                <FolderGit2 className="mx-auto h-10 w-10 text-slate-600 mb-3" />
+                <p className="text-sm font-medium text-slate-300">No projects found matching filter &quot;{urlState.tag}&quot;.</p>
+                <button
+                  type="button"
+                  onClick={() => setUrlParams({ tag: undefined, page: 1 })}
+                  className="mt-3 text-xs text-sky-400 hover:underline"
+                >
+                  Clear filter
+                </button>
               </div>
             ) : data.data.length > 50 ? (
               <VirtualizedProjectList projects={data.data} />
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
                 {data.data.map((project) => (
                   <ProjectCard key={project.id} project={project} />
                 ))}
@@ -89,23 +97,23 @@ export function ProjectGrid() {
             )}
 
             {data.meta.last_page > 1 && (
-              <div className="mt-8 flex items-center justify-center gap-3 text-xs font-medium">
+              <div className="mt-10 flex items-center justify-center gap-3 text-xs font-semibold">
                 <button
                   type="button"
                   disabled={data.meta.current_page <= 1}
                   onClick={() => setUrlParams({ page: data.meta.current_page - 1 })}
-                  className="flex items-center gap-1 rounded-lg border border-slate-700 bg-slate-800 px-3.5 py-1.5 text-slate-200 disabled:opacity-40 hover:bg-slate-700"
+                  className="flex items-center gap-1.5 rounded-full border border-white/10 bg-slate-900/80 px-4 py-2 text-slate-300 disabled:opacity-40 hover:bg-slate-800 hover:text-white transition active:scale-95 shadow-md"
                 >
                   <ChevronLeft className="h-3.5 w-3.5" /> Previous
                 </button>
-                <span className="text-slate-400">
+                <span className="text-slate-400 px-2">
                   Page {data.meta.current_page} of {data.meta.last_page}
                 </span>
                 <button
                   type="button"
                   disabled={data.meta.current_page >= data.meta.last_page}
                   onClick={() => setUrlParams({ page: data.meta.current_page + 1 })}
-                  className="flex items-center gap-1 rounded-lg border border-slate-700 bg-slate-800 px-3.5 py-1.5 text-slate-200 disabled:opacity-40 hover:bg-slate-700"
+                  className="flex items-center gap-1.5 rounded-full border border-white/10 bg-slate-900/80 px-4 py-2 text-slate-300 disabled:opacity-40 hover:bg-slate-800 hover:text-white transition active:scale-95 shadow-md"
                 >
                   Next <ChevronRight className="h-3.5 w-3.5" />
                 </button>

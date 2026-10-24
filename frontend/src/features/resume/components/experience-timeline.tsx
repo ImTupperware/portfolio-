@@ -12,17 +12,17 @@ export function ExperienceTimeline() {
 
   return (
     <ErrorBoundary fallbackTitle="Unable to load career experience" onReset={() => refetch()}>
-      <section id="experience" className="py-14 border-t border-slate-800/80">
-        <div className="mb-10">
-          <div className="inline-flex items-center gap-2 rounded-full border border-sky-500/30 bg-sky-950/40 px-3 py-1 text-xs font-medium text-sky-300 mb-3">
+      <section id="experience" className="py-16 border-t border-white/[0.08]">
+        <div className="mb-12">
+          <div className="inline-flex items-center gap-2 rounded-full border border-sky-500/30 bg-sky-950/50 px-3.5 py-1 text-xs font-semibold text-sky-300 mb-3 shadow-sm shadow-sky-950/40">
             <Briefcase className="h-3.5 w-3.5 text-sky-400" />
-            <span>Freelance, Business &amp; Industrial Training</span>
+            <span>Engineering Track Record</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
-            Freelance, Family Business &amp; Internship
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white">
+            Career &amp; Practical Experience
           </h2>
-          <p className="mt-2 text-base text-slate-400 max-w-2xl">
-            Freelance full-stack software development, managing and digitizing my mother&apos;s business with the Cikda Biz POS PWA, and my university Industrial Training (LI).
+          <p className="mt-2 text-base text-slate-400 max-w-2xl font-normal">
+            Freelance full-stack engineering, digitizing retail operations for my family&apos;s business with offline-first PWA architectures, and my 6-month university Industrial Training (LI).
           </p>
         </div>
 
